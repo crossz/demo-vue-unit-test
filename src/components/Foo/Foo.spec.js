@@ -1,6 +1,8 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
-import Foo from './Foo'
+
+// import Foo from '@/components/Foo/Foo'
+import Foo from './Foo.vue'
 
 const factory = (values = {}) => {
   return shallowMount(Foo, {

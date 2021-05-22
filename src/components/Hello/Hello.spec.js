@@ -8,6 +8,7 @@ import Vue from 'vue'
 import Util from '../../lib/util'
 Vue.prototype.$axios = Util.ajax
 
+// import Hello from "@/components/Hello/Hello.vue";
 import Hello from "./Hello.vue";
 
 describe("Original Demo:", () => {

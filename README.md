@@ -11,7 +11,9 @@
 
 3. sinon works as stub to mock axios.get().
 
-- [ ] webpack.config.js mode
+4. webpack.config.js mode
+
+- [ ] change a webpack based vue project into vue-service and @vue-cli supported
 
 - [ ] Test for vue-router
 
