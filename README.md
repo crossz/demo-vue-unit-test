@@ -1,5 +1,27 @@
 # vue-unit-test-template
 
+## What we do here
+1. original default vue unit test, by using @vue/cli@4.5.12(manually) to create project with unit tests.
+
+    'mocha-chai' is selected while not 'jest', which will be replaced later on.
+    
+    > `"test:unit": "vue-cli-service test:unit"` to config the command.
+
+2. official demos work, see: https://vue-test-utils.vuejs.org/ and https://vuejs.org/v2/cookbook/unit-testing-vue-components.html
+
+3. sinon works as stub to mock axios.get().
+
+- [ ] webpack.config.js mode
+
+- [ ] Test for vue-router
+
+- [ ] Test for vuex
+
+- [ ] Jest mode
+
+
+----
+
 ## Project setup
 ```
 yarn install
