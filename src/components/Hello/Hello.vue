@@ -9,7 +9,7 @@
       <div>
         <!-- <h1>Hello World</h1> -->
         <h1>Hello World</h1>
-        <h1> {{ msg }} </h1>
+        <h1>{{ msg }}</h1>
         <p>
           This is a Vue.js component that has a parameter named 'foobar' with a
           value specified of {{ foobar }}. results in data(): {{ results }}
@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 // ## test jsconfig.json
 // import {} from "@/components/HelloWorld.vue"
 
@@ -34,8 +32,8 @@ export default {
   data() {
     return {
       username: "",
-      API: '/users',
-      results: null
+      API: "/users",
+      results: null,
     };
   },
   computed: {
@@ -46,29 +44,24 @@ export default {
     },
   },
 
-
-  created () {
+  created() {
     // this.getData()
 
     setTimeout(() => {
-      this.getData()
-    }, 1500)
+      this.getData();
+    }, 1500);
   },
   methods: {
-     getData() {
-       let that = this;
-       let url = this.API
+    getData() {
+      let that = this;
+      let url = this.API;
 
-        that.$axios
+      that.$axios
         // return that.$axios
         // return axios
         .get(url)
         .then(function(response) {
-
-
           // console.log(response)
-
-
 
           // 请求正确时执行的代码
           if (response.status === 200) {
@@ -77,12 +70,12 @@ export default {
             that.pageNo = 1;
             that.$message({
               message: response.data.msg,
-              type: "warning"
+              type: "warning",
             });
           }
         })
         .catch(function(error) {
-          console.log(error)
+          console.log(error);
           // // 发生错误时执行的代码
           // that.pageNo = 1;
           // that.$message({
@@ -90,9 +83,7 @@ export default {
           //   type: "warning"
           // });
         });
-    }
-  }
-
-
+    },
+  },
 };
 </script>
