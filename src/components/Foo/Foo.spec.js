@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
+
+import VueRouter from 'vue-router';
 
 // import Foo from '@/components/Foo/Foo'
 import Foo from './Foo.vue'
@@ -14,7 +16,7 @@ const factory = (values = {}) => {
   })
 }
 
-describe('Foo', () => {
+describe.skip('Foo', () => {
   it('renders a welcome message', () => {
     const wrapper = factory()
 
@@ -38,4 +40,32 @@ describe('Foo', () => {
 
     expect(wrapper.find('.error').exists()).equal(false)
   })
+})
+
+
+describe("Cross VueRouter Tests Suite =>>", () => {
+  /** 
+   * localVue for testing
+   */
+  const localVue = createLocalVue()  
+  localVue.use(VueRouter);
+
+  
+  const $route = {
+    path: '/some/path?id=100'
+  }
+  const router = new VueRouter();
+
+  const wrapper = shallowMount(Foo, {
+    localVue,
+    router,
+    // mocks: {
+    //   $route
+    // }
+  })
+
+  console.log(`----==== wrapper.vm.$route.path: ${wrapper.vm.$route.path} ====----`)
+  
+
+
 })

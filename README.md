@@ -15,9 +15,9 @@
 
 5. localVue for testing scope, no poluting to global Vue.
 
-- [ ] change a webpack based vue project into vue-service and @vue-cli supported
+- [x] Test for vue-router: 1st step: simple install router with dummy `this.$route.query` available.
 
-- [ ] Test for vue-router
+- [ ] change a webpack based vue project into vue-service and @vue-cli supported
 
 - [ ] Test for vuex
 

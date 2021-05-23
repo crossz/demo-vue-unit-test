@@ -45,8 +45,10 @@ export default {
   },
 
   created() {
+    /**
+    * Http request unit testing
+    */
     // this.getData()
-
     setTimeout(() => {
       this.getData();
     }, 1500);
@@ -56,12 +58,10 @@ export default {
       let that = this;
       let url = this.API;
 
-
       // console.log(that)
-      console.log(`----==== Hello.vue => getData() ====----`)
+      console.log(`----==== Hello.vue => getData() ====----`);
       // console.log(that.$axios.get)
       // console.log(that.axios.get)
-
 
       that.axios
         // return that.$axios

@@ -1,7 +1,7 @@
 import { expect, assert } from "chai";
 import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 import sinon from "sinon";
-import VueRouter from 'vue-router';
+
 
 // # for mocking http request by using $axios
 // import Util from '../../lib/util'
@@ -114,7 +114,7 @@ describe("Cross Sinon Tests Suite =>> ", () => {
     })
     localVue.use(VueAxios, $axios)
 
-    const wrapper = mount(Hello, {
+    const wrapper = shallowMount(Hello, {
       localVue
     })
     const vm = wrapper.vm;
@@ -166,8 +166,3 @@ describe("Cross Sinon Tests Suite =>> ", () => {
   // })
 });
 
-
-  // describe("Cross VueRouter Tests:", () => {
-    // const router = new VueRouter();
-
-  // }

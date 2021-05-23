@@ -24,7 +24,21 @@ export default {
       username: ''
     }
   },
+  created() {
+    /**
+    * Router unit testing 
+    */
+    console.log('----==== Router testing in Foo.vue ====----');
+    console.log(this.$route.query) // {}
+    console.log(this.$route.query.id) // undefined
 
+
+    if (this.$route.query.id) {
+      this.id = this.$route.query.id;
+      //  获取详情
+      // this.getAccountDetails();
+    }
+  },
   computed: {
     error () {
       return this.username.trim().length < 7
