@@ -56,7 +56,14 @@ export default {
       let that = this;
       let url = this.API;
 
-      that.$axios
+
+      // console.log(that)
+      console.log(`----==== Hello.vue => getData() ====----`)
+      // console.log(that.$axios.get)
+      // console.log(that.axios.get)
+
+
+      that.axios
         // return that.$axios
         // return axios
         .get(url)

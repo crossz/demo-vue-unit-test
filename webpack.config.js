@@ -43,16 +43,16 @@ module.exports = {
             resourceQuery: /module/,
             use: [
               /* config.module.rule('css').oneOf('vue-modules').use('vue-style-loader') */
-              // {
-              //   loader: '/Users/zhengxin/DOC/Vue/tests/vue-unit-test-template/node_modules/vue-style-loader/index.js',
-              //   options: {
-              //     sourceMap: false,
-              //     shadowMode: false
-              //   }
-              // },
+              {
+                loader: path.resolve(__dirname, 'node_modules/vue-style-loader/index.js'),
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
               /* config.module.rule('css').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/zhengxin/DOC/Vue/tests/vue-unit-test-template/node_modules/css-loader/dist/cjs.js',
+                loader: path.resolve(__dirname, 'node_modules/css-loader/dist/cjs.js'),
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -62,15 +62,15 @@ module.exports = {
                 }
               },
               /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
-              // {
-              //   loader: '/Users/zhengxin/DOC/Vue/tests/vue-unit-test-template/node_modules/postcss-loader/src/index.js',
-              //   options: {
-              //     sourceMap: false,
-              //     plugins: [
-              //       function () { /* omitted long function */ }
-              //     ]
-              //   }
-              // }
+              {
+                loader: path.resolve(__dirname, 'node_modules/postcss-loader/src/index.js'),
+                options: {
+                  sourceMap: false,
+                  plugins: [
+                    function () { /* omitted long function */ }
+                  ]
+                }
+              }
             ]
           },
           /* config.module.rule('css').oneOf('vue') */

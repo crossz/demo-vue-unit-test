@@ -4,14 +4,17 @@ import sinon from "sinon";
 import VueRouter from 'vue-router';
 
 // # for mocking http request by using $axios
-import Vue from 'vue'
-import Util from '../../lib/util'
-Vue.prototype.$axios = Util.ajax
+// import Util from '../../lib/util'
+// Vue.prototype.axios = Util.ajax
+
+// import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 // import Hello from "@/components/Hello/Hello.vue";
 import Hello from "./Hello.vue";
 
-describe("Original Demo:", () => {
+describe.skip("Original Demo Suite =>> ", () => {
   it("Hello Demo: ", () => {
     // render the component
     const wrapper = shallowMount(Hello);
@@ -28,33 +31,6 @@ describe("Original Demo:", () => {
     // assert the error has gone away
     expect(wrapper.find(".error").exists()).equal(true);
   });
-});
-
-describe("Cross Axios Tests:", () => {
-  // Vue.prototype.$axios = Util.ajax;
-  // let foobar = "fooboo";
-  // const ctor = Vue.extend(Hello);
-  // const vm = new ctor({ propsData: { foobar } }).$mount();
-
-  const localVue = createLocalVue()
-  localVue.use(VueRouter);
-  const router = new VueRouter();
-
-  it("Axios Demo: ", () => {
-    // mount() returns a wrapped Vue component we can interact with
-    const wrapper = mount(Hello, {
-      propsData: {
-        msg: "Hello w",
-      },
-    });
-
-    expect('Today is sunny').to.contain.oneOf(['sunny', 'cloudy'])
-    // console.log(wrapper.text());
-
-    // assert.include(wrapper.vm.$el.textContent, "Hello World");
-    // expect(wrapper.text()).contain("Hello world");
-    expect(wrapper.text()).to.contain("Hello w");
-  }),
 
   it.skip("correctly sets the foobar value when created", () => {
     let foobar = "fooboo";
@@ -71,8 +47,16 @@ describe("Cross Axios Tests:", () => {
     assert.equal(vm.foobar, foobar);
     assert.include(vm.$el.textContent, `value specified of ${foobar}`);
   });
+});
 
-  it('Sinon demo:', (done) => {
+describe("Cross Sinon Tests Suite =>> ", () => {
+  // Vue.prototype.$axios = Util.ajax;
+  // let foobar = "fooboo";
+  // const ctor = Vue.extend(Hello);
+  // const vm = new ctor({ propsData: { foobar } }).$mount();
+
+
+  it('Axios demo', (done) => {
 
     let res = {
       status: 200,
@@ -120,34 +104,70 @@ describe("Cross Axios Tests:", () => {
       ]
     }
 
+    /** 
+     * localVue for testing
+     */
+    const localVue = createLocalVue()  
+    const $axios = axios.create({
+      baseURL: 'https://api.github.com',
+      timeout: 50000
+    })
+    localVue.use(VueAxios, $axios)
 
-    const wrapper = shallowMount(Hello, {
-      localVue,
+    const wrapper = mount(Hello, {
+      localVue
     })
     const vm = wrapper.vm;
 
     /**
      * axios returns promise, which can be directly 'resolved' for mocking purpose.
      */
-    const resolved = new Promise((r) => r(res));
-    let axiosget = sinon.stub(vm.$axios, 'get')
-    axiosget.returns(resolved)
+     const resolved = new Promise((r) => r(res));
+     let axiosget = sinon.stub(vm.axios, 'get')
+     axiosget.returns(resolved)
 
+    
 
+    // # 1) 1st expect 
     expect(vm.$data.results).to.be.null
+    done()
 
+    // # 2) 2nd expect 
     vm.getData()
-
-    setTimeout(
-      ()=>{
-        expect(vm.$data.results).to.have.length(2)
-
+    
+    setTimeout( () => {
         console.log(vm.$data.results)
+        expect(vm.$data.results).to.have.length(2)
+        
         done()
       }, 1500)
+      
+
+
+    // sinon.restore()
+    // axiosget.restore()
+
 
   });
 
 
 
+
+
+
+
+
+
+
+  // afterEach( () => {
+  //   // vm.$axios.get.restore()
+  //   // axiosget.restore() // ReferenceError: axiosget is not defined
+  //   // sinon.restore()
+  // })
 });
+
+
+  // describe("Cross VueRouter Tests:", () => {
+    // const router = new VueRouter();
+
+  // }

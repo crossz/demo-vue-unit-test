@@ -13,6 +13,8 @@
 
 4. webpack.config.js mode
 
+5. localVue for testing scope, no poluting to global Vue.
+
 - [ ] change a webpack based vue project into vue-service and @vue-cli supported
 
 - [ ] Test for vue-router
