@@ -63,7 +63,8 @@ export default {
       // console.log(that.$axios.get)
       // console.log(that.axios.get)
 
-      that.axios
+      // that.$axios // method 1)
+      that.axios // method 2)
         // return that.$axios
         // return axios
         .get(url)

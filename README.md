@@ -16,6 +16,8 @@
 5. localVue for testing scope, no poluting to global Vue.
 
 - [x] Test for vue-router: 1st step: simple install router with dummy `this.$route.query` available.
+- [x] Test for sinon.spy() for `$message`. which involed in nested if-else depending on 'responds' from http request.
+
 
 - [ ] change a webpack based vue project into vue-service and @vue-cli supported
 

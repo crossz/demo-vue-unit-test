@@ -3,10 +3,11 @@ import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 import sinon from "sinon";
 
 
-// # for mocking http request by using $axios
-// import Util from '../../lib/util'
+// # 1) for manually mocking http request by using $axios to global Vue.prototype
+import Util from '../../lib/util'
 // Vue.prototype.axios = Util.ajax
 
+// # 2) for Vue.use(VueAxios, axios) to install axios, and using 'axios' or '$http' later on.
 // import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -108,6 +109,7 @@ describe("Cross Sinon Tests Suite =>> ", () => {
      * localVue for testing
      */
     const localVue = createLocalVue()  
+    // localVue.prototype.$axios = Util.ajax
     const $axios = axios.create({
       baseURL: 'https://api.github.com',
       timeout: 50000
@@ -123,6 +125,7 @@ describe("Cross Sinon Tests Suite =>> ", () => {
      * axios returns promise, which can be directly 'resolved' for mocking purpose.
      */
      const resolved = new Promise((r) => r(res));
+    //  let axiosget = sinon.stub(vm.$axios, 'get')
      let axiosget = sinon.stub(vm.axios, 'get')
      axiosget.returns(resolved)
 
@@ -130,7 +133,7 @@ describe("Cross Sinon Tests Suite =>> ", () => {
 
     // # 1) 1st expect 
     expect(vm.$data.results).to.be.null
-    done()
+    // done()
 
     // # 2) 2nd expect 
     vm.getData()

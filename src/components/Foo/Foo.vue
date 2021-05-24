@@ -21,7 +21,9 @@ export default {
   data () {
     return {
       message: 'Welcome to the Vue.js cookbook',
-      username: ''
+      username: '',
+      API: "/batchDetail/list?id=3521",
+      results: null
     }
   },
   created() {
@@ -43,6 +45,47 @@ export default {
     error () {
       return this.username.trim().length < 7
     }
+  },
+  methods: {
+
+    getSummaryListInfo() {
+      let that = this;
+      let url = this.API;
+
+      // console.log(that)
+      console.log(`----==== Foo.vue => getSummaryListInfo() ====----`);
+      // console.log(that.$axios.get)
+      // console.log(that.axios.get)
+
+      that.axios
+        // return that.$axios
+        // return axios
+        .get(url)
+        .then(function(response) {
+          // console.log(response)
+
+          // 请求正确时执行的代码
+          if (response.status === 200) {
+            that.results = response.data;
+          } else {
+            that.pageNo = 1;
+            that.$message({
+              message: response.data.msg,
+              type: "warning",
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          // // 发生错误时执行的代码
+          // that.pageNo = 1;
+          // that.$message({
+          //   message: "Server Error",
+          //   type: "warning"
+          // });
+        });
+    },
   }
 }
+
 </script>
