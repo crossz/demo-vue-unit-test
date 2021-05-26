@@ -22,8 +22,9 @@ export default {
     return {
       message: 'Welcome to the Vue.js cookbook',
       username: '',
-      API: "/batchDetail/list?id=3521",
-      results: null
+      API: "/test/vuerouter?id=3521",
+      results: null,
+      id: 0
     }
   },
   created() {
@@ -47,6 +48,10 @@ export default {
     }
   },
   methods: {
+
+    getRouterId() {
+      this.$router.push('/test/vuerouter?id=100')
+    },
 
     getSummaryListInfo() {
       let that = this;

@@ -64,13 +64,17 @@ describe("Cross VueRouter Tests Suite =>>", () => {
   })
   localVue.use(VueAxios, $axios)
   
-  const $route = {
-    path: '/batchDetail/list'
-  }
+  const FooComponent = { template: '<div class="message"> Router id: {{id}} </div>' }
+  const $route = [{
+    path: '/test/vuerouter', 
+    name: 'testvuerouter',
+    // component: resolve => require(['@/components/Foo/Rou.vue'], resolve)
+    component: FooComponent
+  }]
   const router = new VueRouter($route);
 
   let res = require('../../mock/data/createBatchDetails.json');
-  it('router unit tests', () => {
+  it('router unit tests', async () => {
     const wrapper = shallowMount(Foo, {
       localVue,
       router,
@@ -95,13 +99,16 @@ describe("Cross VueRouter Tests Suite =>>", () => {
 
       vm.getSummaryListInfo();
 
-      // console.log(wrapper.vm.getSummaryListInfo())
-      // console.log(aaa)
 
-
+      // vm.$router.push('/test/vuerouter/testpath?id=200') // will not display this number at the bottom.
+      vm.getRouterId(); // the last $route.push() will work.
+      await wrapper.vm.$nextTick();
+      console.log(wrapper.find('.message').text());
+      // console.log(wrapper.vm.id);
  
   
-    console.log(`----==== wrapper.vm.$route.path: ${vm.$route.query.id} ====----`)
+    console.log(`----==== wrapper.vm.$route.path: ${vm.$route.path} ====----`)
+    console.log(`----==== wrapper.vm.$route.query.id: ${vm.$route.query.id} ====----`)
   
   })
   
