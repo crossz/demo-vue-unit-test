@@ -9,6 +9,8 @@ import VueRouter from 'vue-router';
 
 // import Foo from '@/components/Foo/Foo'
 import Foo from './Foo.vue'
+// import NestedRoute from "@/components/Router/NestedRoute.vue"
+
 
 const factory = (values = {}) => {
   return shallowMount(Foo, {
@@ -20,7 +22,7 @@ const factory = (values = {}) => {
   })
 }
 
-describe.skip('Foo', () => {
+describe.skip('Foo test Suite =>>', () => {
   it('renders a welcome message', () => {
     const wrapper = factory()
 
@@ -46,70 +48,3 @@ describe.skip('Foo', () => {
   })
 })
 
-
-describe("Cross VueRouter Tests Suite =>>", () => {
-  /** 
-   * localVue for testing
-   */
-  const localVue = createLocalVue()  
-  localVue.use(VueRouter);
-
-  /** 
-  * localVue for testing
-  */
-  // const localVue = createLocalVue()  
-  const $axios = axios.create({
-    baseURL: 'https://api.github.com',
-    timeout: 50000
-  })
-  localVue.use(VueAxios, $axios)
-  
-  const FooComponent = { template: '<div class="message"> Router id: {{id}} </div>' }
-  const $route = [{
-    path: '/test/vuerouter', 
-    name: 'testvuerouter',
-    // component: resolve => require(['@/components/Foo/Rou.vue'], resolve)
-    component: FooComponent
-  }]
-  const router = new VueRouter($route);
-
-  let res = require('../../mock/data/createBatchDetails.json');
-  it('router unit tests', async () => {
-    const wrapper = shallowMount(Foo, {
-      localVue,
-      router,
-      // mocks: {
-      //   $route
-      // }
-      })
-      const vm = wrapper.vm;
-
-      /**
-      * axios returns promise, which can be directly 'resolved' for mocking purpose.
-      */
-      const resolved = new Promise((r) => r(res));
-      let axiosget = sinon.stub(vm.axios, 'get')
-      axiosget.returns(resolved);
-
-      // TODO: 
-      // const vmMessage = sinon.spy(vm, '$message') // have to declare what is $message, like $axios in Hello.spec.js.
-      // localVue.prototype.$message = sinon.spy();
-      vm.$message = sinon.spy();
-
-
-      vm.getSummaryListInfo();
-
-
-      // vm.$router.push('/test/vuerouter/testpath?id=200') // will not display this number at the bottom.
-      vm.getRouterId(); // the last $route.push() will work.
-      await wrapper.vm.$nextTick();
-      console.log(wrapper.find('.message').text());
-      // console.log(wrapper.vm.id);
- 
-  
-    console.log(`----==== wrapper.vm.$route.path: ${vm.$route.path} ====----`)
-    console.log(`----==== wrapper.vm.$route.query.id: ${vm.$route.query.id} ====----`)
-  
-  })
-  
-})

@@ -15,7 +15,7 @@ import VueAxios from 'vue-axios'
 // import Hello from "@/components/Hello/Hello.vue";
 import Hello from "./Hello.vue";
 
-describe.skip("Original Demo Suite =>> ", () => {
+describe.skip("Hello original demo Suite =>> ", () => {
   it("Hello Demo: ", () => {
     // render the component
     const wrapper = shallowMount(Hello);
@@ -50,7 +50,7 @@ describe.skip("Original Demo Suite =>> ", () => {
   });
 });
 
-describe("Cross Sinon Tests Suite =>> ", () => {
+describe.skip("Cross Sinon Tests Suite =>> ", () => {
   // Vue.prototype.$axios = Util.ajax;
   // let foobar = "fooboo";
   // const ctor = Vue.extend(Hello);

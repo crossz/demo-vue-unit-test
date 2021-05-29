@@ -18,7 +18,8 @@
 - [x] Test for vue-router: 1st step: simple install router with dummy `this.$route.query` available.
 - [x] Test for sinon.spy() for `$message`. which involed in nested if-else depending on 'responds' from http request.
 - [x] Test where `$router.push()` to and corresponding `$route.path`, `$route.query.id`.
-- [ ] Next routed page content loaded and tested.
+- [x] Nested routed page content loaded and tested, in RouterFoo.
+- [ ] load $route.query from created()
 
 
 - [ ] change a webpack based vue project into vue-service and @vue-cli supported

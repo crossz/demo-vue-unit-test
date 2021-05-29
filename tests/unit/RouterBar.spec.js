@@ -1,0 +1,1 @@
+../../src/components/RouterBar/RouterBar.spec.js

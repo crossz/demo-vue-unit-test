@@ -1,0 +1,1 @@
+../../src/components/RouterFoo/RouterFoo.spec.js

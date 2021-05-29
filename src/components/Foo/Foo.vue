@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="message">
+    <div id="foo">
       {{ message }}
+      <router-view />
     </div>
     Enter your username: <input v-model="username">
     <div
@@ -27,21 +28,7 @@ export default {
       id: 0
     }
   },
-  created() {
-    /**
-    * Router unit testing 
-    */
-    console.log('----==== Router testing in Foo.vue ====----');
-    console.log(this.$route.query) // {}
-    console.log(this.$route.query.id) // undefined
 
-
-    if (this.$route.query.id) {
-      this.id = this.$route.query.id;
-      //  获取详情
-      // this.getAccountDetails();
-    }
-  },
   computed: {
     error () {
       return this.username.trim().length < 7
@@ -49,47 +36,6 @@ export default {
   },
   methods: {
 
-    getRouterId() {
-      this.$router.push('/test/vuerouter?id=100')
-    },
-
-    getSummaryListInfo() {
-      let that = this;
-      let url = this.API;
-
-      // console.log(that)
-      console.log(`----==== Foo.vue => getSummaryListInfo() ====----`);
-      // console.log(that.$axios.get)
-      // console.log(that.axios.get)
-
-      that.axios
-        // return that.$axios
-        // return axios
-        .get(url)
-        .then(function(response) {
-          // console.log(response)
-
-          // 请求正确时执行的代码
-          if (response.status === 200) {
-            that.results = response.data;
-          } else {
-            that.pageNo = 1;
-            that.$message({
-              message: response.data.msg,
-              type: "warning",
-            });
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-          // // 发生错误时执行的代码
-          // that.pageNo = 1;
-          // that.$message({
-          //   message: "Server Error",
-          //   type: "warning"
-          // });
-        });
-    },
   }
 }
 

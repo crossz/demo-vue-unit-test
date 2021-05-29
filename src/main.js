@@ -1,4 +1,8 @@
 import Vue from 'vue'
+
+import VueRouter from 'vue-router';
+// import router from './router'
+
 import App from './App.vue'
 
 Vue.config.productionTip = false
@@ -20,6 +24,28 @@ Vue.use(VueAxios, $axios)
 console.log(Vue.axios)
 
 
+// # Vue router
+const routes = [
+  {
+    path: '/',
+    redirect: '/foo',
+  },
+  {
+    path: '/hello',
+    name: 'hello',
+    component: resolve => require(['@/components/Hello/Hello.vue'], resolve)
+  },
+  {
+    path: '/foo',
+    name: 'foo',
+    component: resolve => require(['@/components/Foo/Foo.vue'], resolve)
+  }
+]
+Vue.use(VueRouter)
+const router = new VueRouter({routes})
+
+
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
