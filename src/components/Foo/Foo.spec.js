@@ -5,12 +5,8 @@ import sinon from "sinon";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import VueRouter from 'vue-router';
-
 // import Foo from '@/components/Foo/Foo'
 import Foo from './Foo.vue'
-// import NestedRoute from "@/components/Router/NestedRoute.vue"
-
 
 const factory = (values = {}) => {
   return shallowMount(Foo, {
@@ -22,7 +18,7 @@ const factory = (values = {}) => {
   })
 }
 
-describe.skip('Foo test Suite =>>', () => {
+describe.skip('== Foo test Suite =>>', () => {
   it('renders a welcome message', () => {
     const wrapper = factory()
 

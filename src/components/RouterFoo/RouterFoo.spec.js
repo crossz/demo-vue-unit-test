@@ -10,7 +10,7 @@ const routes = [
   { path: "/nested-route/abc", component: NestedRoute }
 ]
 
-describe("Cross RouterFoo router.push() test Suite =>>", () => {
+describe("== RouterFoo router.push() test Suite =>>", () => {
   it("renders a child component via routing", async () => {
     const localVue = createLocalVue()
     localVue.use(VueRouter)

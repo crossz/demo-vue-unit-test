@@ -15,11 +15,16 @@
 
 5. localVue for testing scope, no poluting to global Vue.
 
+6. Router unit tests:
+    - RouterFoo.vue and spec.js are for router-view in vue component and router.push() in spec.js will load nested route/component.
+    - RouterBar.vue and spec.js are for router.push() in specific vue component methods, test whether target route/component will load successfully.
+    - NestedRoute.vue and spec.js are for vue components which are nested route/component to be tested directly as pure unit test without being loaded by router.push(). And the $route being used through router.push() are mocked in spec.js.
+
 - [x] Test for vue-router: 1st step: simple install router with dummy `this.$route.query` available.
 - [x] Test for sinon.spy() for `$message`. which involed in nested if-else depending on 'responds' from http request.
 - [x] Test where `$router.push()` to and corresponding `$route.path`, `$route.query.id`.
-- [x] Nested routed page content loaded and tested, in RouterFoo.
-- [ ] load $route.query from created()
+- [x] Nested routed page content loaded and tested, in RouterFoo, see: https://lmiller1990.github.io/vue-testing-handbook/vue-router.html#using-a-mock-router
+- [x] load $route.query from created()
 
 
 - [ ] change a webpack based vue project into vue-service and @vue-cli supported

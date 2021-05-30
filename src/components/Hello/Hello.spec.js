@@ -4,7 +4,7 @@ import sinon from "sinon";
 
 
 // # 1) for manually mocking http request by using $axios to global Vue.prototype
-import Util from '../../lib/util'
+// import Util from '../../lib/util' // NOTE: THIS WILL AFFECT OTHER SPEC.JS as the global vue is polluted.
 // Vue.prototype.axios = Util.ajax
 
 // # 2) for Vue.use(VueAxios, axios) to install axios, and using 'axios' or '$http' later on.
@@ -15,7 +15,7 @@ import VueAxios from 'vue-axios'
 // import Hello from "@/components/Hello/Hello.vue";
 import Hello from "./Hello.vue";
 
-describe.skip("Hello original demo Suite =>> ", () => {
+describe("== Hello original demo Suite =>> ", () => {
   it("Hello Demo: ", () => {
     // render the component
     const wrapper = shallowMount(Hello);
@@ -33,14 +33,12 @@ describe.skip("Hello original demo Suite =>> ", () => {
     expect(wrapper.find(".error").exists()).equal(true);
   });
 
-  it.skip("correctly sets the foobar value when created", () => {
+  it("correctly sets the foobar value when created", () => {
     let foobar = "fooboo";
     // const ctor = Vue.extend(Hello);
     // const vm = new ctor({ propsData: { foobar } }).$mount();
 
     const wrapper = shallowMount(Hello, {
-      localVue,
-      router,
       propsData: { foobar },
     });
     const vm = wrapper.vm;
@@ -50,7 +48,7 @@ describe.skip("Hello original demo Suite =>> ", () => {
   });
 });
 
-describe.skip("Cross Sinon Tests Suite =>> ", () => {
+describe.skip("== Hello Sinon Tests Suite =>> ", () => {
   // Vue.prototype.$axios = Util.ajax;
   // let foobar = "fooboo";
   // const ctor = Vue.extend(Hello);
